@@ -8,7 +8,26 @@ public class EmployeeTableModel extends AbstractTableModel{
     private Object[][] data;
 
     public EmployeeTableModel() {
-        data = new Object[][] {};
+        data = new Object[][] {
+            {
+                1,
+                "Tom",
+                "Cruise",
+                "https://jsonformatter.org/img/tom-cruise.jpg"
+            },
+            {
+                2,
+                "Maria",
+                "Sharapova",
+                "https://jsonformatter.org/img/Maria-Sharapova.jpg"
+            },
+            {
+                3,
+                "Robert",
+                "Downey Jr.",
+                "https://jsonformatter.org/img/Robert-Downey-Jr.jpg"
+            }
+        };
     }
     
     @Override
