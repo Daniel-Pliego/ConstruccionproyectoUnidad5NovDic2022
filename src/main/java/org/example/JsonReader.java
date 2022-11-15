@@ -11,23 +11,29 @@ import java.util.ArrayList;
 public class JsonReader {
 
     private ArrayList<Employee> employees = new ArrayList<>();
+    private final String FILENAME = "src/main/resources/empleadosDB.json";
 
 
     public void readFile() {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        try (Reader reader = new FileReader("src/main/resources/empleadosDB.json")) {
+        try (Reader reader = new FileReader(FILENAME)) {
 
-            // Convert JSON to JsonElement, and later to String
             JsonElement jsonElement = gson.fromJson(reader, JsonElement.class);
             JsonObject json = jsonElement.getAsJsonObject();
 
-            JsonArray jsonEmployees = json.get("employees").getAsJsonObject().get("employee").getAsJsonArray();
+           try {
+               JsonArray jsonEmployees = json.get("employees").getAsJsonObject().get("employee").getAsJsonArray();
 
 
-            for (JsonElement jsonEmployee : jsonEmployees) {
-                Employee employee = gson.fromJson(jsonEmployee, Employee.class);
-                employees.add(employee);
-            }
+               for (JsonElement jsonEmployee : jsonEmployees) {
+                   Employee employee = gson.fromJson(jsonEmployee, Employee.class);
+                   employees.add(employee);
+               }
+           } catch (NullPointerException e) {
+               throw new JsonParseException("Formato equivocado de JSON");
+           } catch (JsonParseException e) {
+               throw new JsonParseException("Formato equivocado de JSON");
+           }
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
