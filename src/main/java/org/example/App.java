@@ -1,11 +1,9 @@
 package org.example;
 
-import org.example.gui.EmployeesTableView;
+import org.example.gui.controllers.EmployeeTableController;
 
-public class App 
-{
-    public static void main( String[] args )
-    {
-        EmployeesTableView.main(args);
+public class App {
+    public static void main( String[] args ) {
+        EmployeeTableController controller = new EmployeeTableController();
     }
 }
