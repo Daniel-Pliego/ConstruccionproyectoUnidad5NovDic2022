@@ -1,0 +1,24 @@
+{
+"employees": {
+  "employee": [
+    {
+
+      "firstName": "Tom",
+      "lastName": "Cruise",
+      "photo": "https://jsonformatter.org/img/tom-cruise.jpg"
+    },
+    {
+
+      "firstName": "Maria",
+      "lastName": "Sharapova",
+      "photo": "https://jsonformatter.org/img/Maria-Sharapova.jpg"
+    },
+    {
+
+      "firstName": "Robert",
+      "lastName": "Downey Jr.",
+      "photo": "https://jsonformatter.org/img/Robert-Downey-Jr.jpg"
+    }
+  ]
+}
+}
