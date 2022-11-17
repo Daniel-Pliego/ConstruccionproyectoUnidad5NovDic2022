@@ -2,14 +2,16 @@ package org.example.gui.controllers;
 
 import javax.swing.table.AbstractTableModel;
 import org.example.models.Employee;
+import org.example.models.EmployeeDB;
 
 public class EmployeeTableModel extends AbstractTableModel{
+    private EmployeeDB employeeDB = new EmployeeDB();
 
     private final String[] columnNames = new String[] {"ID", "Nombre", "Apellido", "Foto"};
     private Employee[] employees;
 
-    public EmployeeTableModel(Employee[] employees) {
-        this.employees = employees;
+    public EmployeeTableModel() {
+        this.employees = employeeDB.getEmployees().toArray(new Employee[0]);
     }
 
     public Employee[] getEmployees() {
