@@ -1,38 +1,28 @@
 package org.example.gui.controllers;
 
 import javax.swing.table.AbstractTableModel;
+import org.example.Employee;
 
 public class EmployeeTableModel extends AbstractTableModel{
 
     private final String[] columnNames = new String[] {"ID", "Nombre", "Apellido", "Foto"};
-    private Object[][] data;
+    private Employee[] employees;
 
-    public EmployeeTableModel() {
-        data = new Object[][] {
-            {
-                1,
-                "Tom",
-                "Cruise",
-                "https://jsonformatter.org/img/tom-cruise.jpg"
-            },
-            {
-                2,
-                "Maria",
-                "Sharapova",
-                "https://jsonformatter.org/img/Maria-Sharapova.jpg"
-            },
-            {
-                3,
-                "Robert",
-                "Downey Jr.",
-                "https://jsonformatter.org/img/Robert-Downey-Jr.jpg"
-            }
-        };
+    public EmployeeTableModel(Employee[] employees) {
+        this.employees = employees;
+    }
+
+    public Employee[] getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(Employee[] employees) {
+        this.employees = employees;
     }
     
     @Override
     public int getRowCount() {
-        return data.length;
+        return employees.length;
     }
 
     @Override
@@ -42,7 +32,11 @@ public class EmployeeTableModel extends AbstractTableModel{
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        return data[rowIndex][columnIndex];
+        Employee employee = employees[rowIndex];
+        if (columnIndex == 0) return employee.getId();
+        if (columnIndex == 1) return employee.getFirstName();
+        if (columnIndex == 2) return employee.getLastName();
+        else return employee.getPhoto();
     }
 
     @Override
