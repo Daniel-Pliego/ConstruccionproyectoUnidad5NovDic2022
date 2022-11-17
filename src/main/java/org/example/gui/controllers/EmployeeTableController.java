@@ -1,7 +1,7 @@
 package org.example.gui.controllers;
 
 import javax.swing.JTable;
-import org.example.Employee;
+import org.example.models.Employee;
 import org.example.gui.EmployeesTableView;
 
 public class EmployeeTableController {

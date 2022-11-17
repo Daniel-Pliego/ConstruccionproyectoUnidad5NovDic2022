@@ -1,7 +1,7 @@
 package org.example.gui.controllers;
 
 import javax.swing.table.AbstractTableModel;
-import org.example.Employee;
+import org.example.models.Employee;
 
 public class EmployeeTableModel extends AbstractTableModel{
 
