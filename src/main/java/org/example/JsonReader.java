@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.models.Employee;
 import com.google.gson.*;
 
 import java.io.FileNotFoundException;
