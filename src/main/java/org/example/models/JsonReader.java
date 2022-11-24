@@ -2,16 +2,11 @@ package org.example.models;
 
 import com.google.gson.*;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.ArrayList;
-
 public class JsonReader {
 
-    private ArrayList<Employee> employees = new ArrayList<>();
-    private final String FILENAME = "src/main/resources/empleadosDB.json";
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     public void parseJsonToEmployee(JsonArray jsonArray) {
@@ -74,23 +69,8 @@ public class JsonReader {
                     throw new RuntimeException("No se ha encontrado el elemento 'photo' en el archivo JSON");
                 }
             }
-        } catch (NullPointerException e) {
-            throw new JsonParseException("Formato equivocado de JSON");
-        } catch (JsonParseException e) {
+        } catch (NullPointerException | JsonParseException e) {
             throw new JsonParseException("Formato equivocado de JSON");
         }
-    }
-
-
-
-    public ArrayList<Employee> getEmployees() {
-        return employees;
-    }
-
-    public static void main(String[] args) {
-        JsonReader jsonReader = new JsonReader();
-        jsonReader.readFile(jsonReader.FILENAME);
-        System.out.println(jsonReader.getEmployees().get(0).getFirstName());
-
     }
 }
