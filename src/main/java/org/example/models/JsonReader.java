@@ -2,27 +2,14 @@ package org.example.models;
 
 import com.google.gson.*;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.ArrayList;
-
 public class JsonReader {
 
-    private ArrayList<Employee> employees = new ArrayList<>();
-    private final String FILENAME = "src/main/resources/empleadosDB.json";
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-    public void parseJsonToEmployee(JsonArray jsonArray) {
-        for (JsonElement jsonElement : jsonArray) {
-            Employee employee = gson.fromJson(jsonElement, Employee.class);
-            employees.add(employee);
-        }
-    }
-
-    public ArrayList<Employee> readFile(String filename) {
-
+    public JsonArray readFile(String filename) {
         try (Reader reader = new FileReader(filename)) {
 
             JsonElement jsonElement = gson.fromJson(reader, JsonElement.class);
@@ -40,13 +27,10 @@ public class JsonReader {
             }
             JsonArray jsonEmployees = json.get("employees").getAsJsonObject().get("employee").getAsJsonArray();
             validarJson(jsonEmployees);
-            parseJsonToEmployee(jsonEmployees);
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+            return jsonEmployees;
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return employees;
     }
 
     private void validarJson(JsonArray jsonArray) {
@@ -74,23 +58,8 @@ public class JsonReader {
                     throw new RuntimeException("No se ha encontrado el elemento 'photo' en el archivo JSON");
                 }
             }
-        } catch (NullPointerException e) {
-            throw new JsonParseException("Formato equivocado de JSON");
-        } catch (JsonParseException e) {
+        } catch (NullPointerException | JsonParseException e) {
             throw new JsonParseException("Formato equivocado de JSON");
         }
-    }
-
-
-
-    public ArrayList<Employee> getEmployees() {
-        return employees;
-    }
-
-    public static void main(String[] args) {
-        JsonReader jsonReader = new JsonReader();
-        jsonReader.readFile(jsonReader.FILENAME);
-        System.out.println(jsonReader.getEmployees().get(0).getFirstName());
-
     }
 }

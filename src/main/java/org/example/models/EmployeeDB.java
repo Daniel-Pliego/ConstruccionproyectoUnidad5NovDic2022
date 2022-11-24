@@ -1,17 +1,28 @@
 package org.example.models;
 
-import java.util.ArrayList;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.reflect.TypeToken;
+
+import java.util.List;
 
 public class EmployeeDB {
-    private ArrayList<Employee> employees = new ArrayList<>();
 
-    JsonReader jsonReader = new JsonReader();
+    private static final String jsonPath = "src/main/resources/empleadosDB.json";
 
-    public EmployeeDB() {
-        employees = jsonReader.readFile("src/main/resources/empleadosDB.json");
+    public static Employee[] getEmployees() {
+        JsonArray jsonArray = readEmployeeJson();
+        return parseJsonToEmployeeArray(jsonArray);
     }
 
-    public ArrayList<Employee> getEmployees() {
-        return employees;
+    private static JsonArray readEmployeeJson() {
+        JsonReader jsonReader = new JsonReader();
+        return jsonReader.readFile(jsonPath);
     }
+
+    private static Employee[] parseJsonToEmployeeArray(JsonArray json) {
+        List<Employee> employees = new Gson().fromJson(json, new TypeToken<>(){});
+        return employees.toArray(new Employee[0]);
+    }
+
 }
