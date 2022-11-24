@@ -1,48 +1,45 @@
 package org.example.gui.controllers;
 
-import javax.swing.table.AbstractTableModel;
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+
 import org.example.models.Employee;
 import org.example.models.EmployeeDB;
 
-public class EmployeeTableModel extends AbstractTableModel{
-    private EmployeeDB employeeDB = new EmployeeDB();
+public class EmployeeTableModel extends DefaultTableModel {
 
-    private final String[] columnNames = new String[] {"ID", "Nombre", "Apellido", "Foto"};
-    private Employee[] employees;
+    private static final String[] columnNames = new String[] {"ID", "Nombre", "Apellido", "Foto"};
 
-    public EmployeeTableModel() {
-        this.employees = employeeDB.getEmployees().toArray(new Employee[0]);
+    public static EmployeeTableModel createModel() {
+
+        Employee[] employees = EmployeeDB.getEmployees();
+        Object[][] tableData = toObjectMatrix(employees);
+
+        return new EmployeeTableModel(tableData, columnNames);
     }
 
-    public Employee[] getEmployees() {
-        return employees;
+    private static Object[][] toObjectMatrix(Employee[] employees) {
+        Object[][] matrix = new Object[employees.length][4];
+        int index = 0;
+        for (Employee employee : employees) {
+            matrix[index++] = new Object[] {
+                    employee.getId(),
+                    employee.getFirstName(),
+                    employee.getLastName(),
+                    new ImageIcon(employee.getPhoto())
+            };
+        }
+
+        return matrix;
     }
 
-    public void setEmployees(Employee[] employees) {
-        this.employees = employees;
-    }
-    
-    @Override
-    public int getRowCount() {
-        return employees.length;
-    }
-
-    @Override
-    public int getColumnCount() {
-        return columnNames.length;
-    }
-
-    @Override
-    public Object getValueAt(int rowIndex, int columnIndex) {
-        Employee employee = employees[rowIndex];
-        if (columnIndex == 0) return employee.getId();
-        if (columnIndex == 1) return employee.getFirstName();
-        if (columnIndex == 2) return employee.getLastName();
-        else return employee.getPhoto();
+    private EmployeeTableModel(Object[][] matrix, Object[] columnNames) {
+        super(matrix, columnNames);
     }
 
     @Override
-    public String getColumnName(int column) {
-        return columnNames[column];
+    public Class<?> getColumnClass(int columnIndex) {
+        if (columnIndex == 3) return ImageIcon.class;
+        return String.class;
     }
 }
