@@ -9,15 +9,7 @@ public class JsonReader {
 
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-    public void parseJsonToEmployee(JsonArray jsonArray) {
-        for (JsonElement jsonElement : jsonArray) {
-            Employee employee = gson.fromJson(jsonElement, Employee.class);
-            employees.add(employee);
-        }
-    }
-
-    public ArrayList<Employee> readFile(String filename) {
-
+    public JsonArray readFile(String filename) {
         try (Reader reader = new FileReader(filename)) {
 
             JsonElement jsonElement = gson.fromJson(reader, JsonElement.class);
@@ -35,13 +27,10 @@ public class JsonReader {
             }
             JsonArray jsonEmployees = json.get("employees").getAsJsonObject().get("employee").getAsJsonArray();
             validarJson(jsonEmployees);
-            parseJsonToEmployee(jsonEmployees);
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+            return jsonEmployees;
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return employees;
     }
 
     private void validarJson(JsonArray jsonArray) {
