@@ -17,6 +17,10 @@ public class EmployeeTableController {
     }
     
     private void initComponents() {
+        table.setRowHeight(200);
+        table.getColumnModel().getColumn(3).setWidth(200);
+        table.setPreferredScrollableViewportSize(table.getPreferredSize());
+        table.getColumnModel().getColumn(3).setCellRenderer(new ImageIconRenderer());
         table.setModel(EmployeeTableModel.createModel());
     }
 }
