@@ -2,6 +2,7 @@ package org.example.gui.controllers;
 
 import org.example.gui.EditEmployeeView;
 import org.example.models.Employee;
+import org.example.models.EmployeeDB;
 
 import javax.swing.*;
 
@@ -42,6 +43,7 @@ public class EditEmployeeController {
                     lastNameField.getText(),
                     fileNameField.getText()
             );
+            EmployeeDB.updateDB(employee);
         });
     }
 }

@@ -25,4 +25,12 @@ public class EmployeeDB {
         return employees.toArray(new Employee[0]);
     }
 
+    public static void updateDB(Employee employee) {
+        Employee[] employees = getEmployees();
+        for (int i = 0; i < employees.length; i++) {
+            if (employees[i].equals(employee)) {
+                employees[i] = employee;
+            }
+        }
+    }
 }
