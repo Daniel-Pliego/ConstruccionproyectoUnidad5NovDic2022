@@ -1,5 +1,6 @@
 package org.example;
 
+import com.google.gson.JsonArray;
 import org.example.models.JsonReader;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -22,9 +23,9 @@ public class employeeObejectCreationTest {
     @Test
     @DisplayName("Correct Object Creation")
     void shouldCreateCorrectObject() {
-        jsonReader.readFile(correctJSON);
-        assertFalse(jsonReader.getEmployees().isEmpty());
-        assertEquals(3, jsonReader.getEmployees().size());
+        JsonArray jsonArray = jsonReader.readFile(correctJSON);
+        assertFalse(jsonArray.isEmpty());
+        assertEquals(3, jsonArray.size());
     }
 
 }
