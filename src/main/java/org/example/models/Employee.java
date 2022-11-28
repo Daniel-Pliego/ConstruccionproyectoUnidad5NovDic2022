@@ -2,12 +2,13 @@ package org.example.models;
 
 import java.util.Objects;
 
-@SuppressWarnings("ClassCanBeRecord")
+
 public class Employee {
     private final int id;
     private final String firstName;
     private final String lastName;
     private final String photo;
+
 
     public Employee(int id, String firstName, String lastName, String photo) {
         this.id = id;
