@@ -8,7 +8,11 @@ import java.util.List;
 
 public class EmployeeDB {
 
-    private static final String jsonPath = "src/main/resources/empleadosDB.json";
+    private static String jsonPath = "src/main/resources/empleadosDB.json";
+
+    public static void setJsonPath(String jsonPath) {
+        EmployeeDB.jsonPath = jsonPath;
+    }
 
     //JsonArray singleton
     private static JsonArray jsonArray;
@@ -44,6 +48,8 @@ public class EmployeeDB {
         for (int i = 0; i < employees.length; i++) {
             if (employees[i].equals(employee)) {
                 employees[i] = employee;
+                JsonWriter.writeJson(jsonPath, employees);
+                break;
             }
         }
     }

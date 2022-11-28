@@ -5,6 +5,8 @@ import com.google.gson.*;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
+
+
 public class JsonReader {
 
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -62,4 +64,5 @@ public class JsonReader {
             throw new JsonParseException("Formato equivocado de JSON");
         }
     }
+
 }
