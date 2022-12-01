@@ -83,7 +83,7 @@ public class EmployeeTableController {
 
     private void addActionListenerToAddButton() {
         addButton.addActionListener(e -> {
-
+            new AddEmployeeController();
         });
     }
 }

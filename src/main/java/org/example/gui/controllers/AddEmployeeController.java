@@ -18,9 +18,7 @@ public class AddEmployeeController {
 
     private Employee employee;
 
-    public AddEmployeeController(Employee employee) {
-
-        this.employee = employee;
+    public AddEmployeeController() {
 
         view = new AddEmployeeView();
         view.setVisible(true);
