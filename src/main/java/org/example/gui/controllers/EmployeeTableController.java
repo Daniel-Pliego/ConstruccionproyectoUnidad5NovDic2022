@@ -73,7 +73,7 @@ public class EmployeeTableController {
             );
 
             if (option == 1) {
-
+                EmployeeDB.deleteEmployee(employeeIndex);
             }
         });
     }
