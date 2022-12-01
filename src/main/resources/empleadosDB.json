@@ -2,22 +2,22 @@
   "employees": {
     "employee": [
       {
-        "id": "1",
+        "id": 1,
         "firstName": "Tom",
-        "lastName": "Cruise",
-        "photo": "https://jsonformatter.org/img/tom-cruise.jpg"
+        "lastName": "Cruiser",
+        "photo": "src/main/resources/tom-cruise.jpg"
       },
       {
-        "id": "2",
+        "id": 2,
         "firstName": "Maria",
         "lastName": "Sharapova",
-        "photo": "https://jsonformatter.org/img/Maria-Sharapova.jpg"
+        "photo": "src/main/resources/Maria-Sharapova.jpg"
       },
       {
-        "id": "3",
+        "id": 3,
         "firstName": "Robert",
         "lastName": "Downey Jr.",
-        "photo": "https://jsonformatter.org/img/Robert-Downey-Jr.jpg"
+        "photo": "src/main/resources/Robert-Downey-Jr.jpg"
       }
     ]
   }
