@@ -16,12 +16,15 @@ public class EditEmployeeController {
 
     private Employee employee;
 
+    private final EditEmployeeView view;
+
     public EditEmployeeController(Employee employee) {
 
         this.employee = employee;
 
-        EditEmployeeView view = new EditEmployeeView();
+        view = new EditEmployeeView();
         view.setVisible(true);
+        view.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
         firstNameField = view.getFirstNameField();
         lastNameField = view.getLastNameField();
@@ -44,6 +47,12 @@ public class EditEmployeeController {
                     fileNameField.getText()
             );
             EmployeeDB.updateDB(employee);
+            closeWindow();
         });
+    }
+
+    private void closeWindow() {
+        view.setVisible(false);
+        view.dispose();
     }
 }
