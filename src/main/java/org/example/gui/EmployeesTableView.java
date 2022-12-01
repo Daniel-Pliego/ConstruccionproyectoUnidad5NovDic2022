@@ -1,5 +1,7 @@
 package org.example.gui;
 
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JTable;
 
 public class EmployeesTableView extends javax.swing.JFrame {
@@ -10,6 +12,18 @@ public class EmployeesTableView extends javax.swing.JFrame {
 
     public JTable getEmployeesTable() {
         return employeesTable;
+    }
+
+    public JButton getEditButton() {
+        return editButton;
+    }
+
+    public JComboBox<String> getEmployeeComboBox() {
+        return employeeComboBox;
+    }
+
+    public JButton getDeleteButton() {
+        return deleteButton;
     }
 
     /**
@@ -24,6 +38,9 @@ public class EmployeesTableView extends javax.swing.JFrame {
         popupMenu1 = new java.awt.PopupMenu();
         scrollPane = new javax.swing.JScrollPane();
         employeesTable = new javax.swing.JTable();
+        employeeComboBox = new javax.swing.JComboBox<>();
+        editButton = new javax.swing.JButton();
+        deleteButton = new javax.swing.JButton();
 
         popupMenu1.setLabel("popupMenu1");
 
@@ -42,26 +59,58 @@ public class EmployeesTableView extends javax.swing.JFrame {
         ));
         scrollPane.setViewportView(employeesTable);
 
+        employeeComboBox.setEditable(true);
+        employeeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        editButton.setText("Edit employee");
+        editButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editButtonActionPerformed(evt);
+            }
+        });
+
+        deleteButton.setText("Delete employee");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 403, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(editButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(deleteButton))
+                    .addComponent(employeeComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 346, Short.MAX_VALUE)
+                .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(employeeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(editButton)
+                    .addComponent(deleteButton))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_editButtonActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton deleteButton;
+    private javax.swing.JButton editButton;
+    private javax.swing.JComboBox<String> employeeComboBox;
     private javax.swing.JTable employeesTable;
     private java.awt.PopupMenu popupMenu1;
     private javax.swing.JScrollPane scrollPane;
