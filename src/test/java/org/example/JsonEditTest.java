@@ -16,8 +16,7 @@ public class JsonEditTest {
     @DisplayName("Edit JSON")
     void shouldEditJSON() {
         Employee[] employees = new Employee[2];
-
-        assertThrows(FileNotFoundException.class, () -> {JsonWriter.writeJson("sss", employees);});
+        assertThrows(RuntimeException.class, () -> JsonWriter.writeJson("sss.json", employees));
 
     }
 
