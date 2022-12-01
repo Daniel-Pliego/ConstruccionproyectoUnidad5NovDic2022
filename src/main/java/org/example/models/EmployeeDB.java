@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.reflect.TypeToken;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class EmployeeDB {
@@ -52,5 +53,11 @@ public class EmployeeDB {
                 break;
             }
         }
+    }
+
+    public static void deleteEmployee(int employeeIndex) {
+        ArrayList<Employee> employees = new ArrayList<>(List.of(getEmployees()));
+        employees.remove(employeeIndex);
+        JsonWriter.writeJson(jsonPath, employees.toArray(new Employee[0]));
     }
 }
