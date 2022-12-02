@@ -49,6 +49,7 @@ public class AddEmployeeController {
             createEmployee();
 
             if (employee != null) {
+                EmployeeDB.addEmployee(employee);
                 closeWindow();
             } else {
                 JOptionPane.showMessageDialog(

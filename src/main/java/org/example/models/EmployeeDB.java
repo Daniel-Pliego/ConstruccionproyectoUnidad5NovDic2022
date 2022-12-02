@@ -73,4 +73,11 @@ public class EmployeeDB {
 
         return higherID + 1;
     }
+
+    public static void addEmployee(Employee employee) {
+        ArrayList<Employee> employees = new ArrayList<>(List.of(getEmployees()));
+        employees.add(employee);
+        JsonWriter.writeJson(jsonPath, employees.toArray(new Employee[0]));
+        updateJsonArray();
+    }
 }
