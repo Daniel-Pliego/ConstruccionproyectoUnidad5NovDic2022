@@ -62,4 +62,22 @@ public class EmployeeDB {
         JsonWriter.writeJson(jsonPath, employees.toArray(new Employee[0]));
         updateJsonArray();
     }
+
+    public static int createNewID() {
+        int higherID = -1;
+        for (Employee employee : getEmployees()) {
+            if (employee.getId() > higherID) {
+                higherID = employee.getId();
+            }
+        }
+
+        return higherID + 1;
+    }
+
+    public static void addEmployee(Employee employee) {
+        ArrayList<Employee> employees = new ArrayList<>(List.of(getEmployees()));
+        employees.add(employee);
+        JsonWriter.writeJson(jsonPath, employees.toArray(new Employee[0]));
+        updateJsonArray();
+    }
 }
