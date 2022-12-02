@@ -2,6 +2,7 @@ package org.example.gui.controllers;
 
 import org.example.gui.AddEmployeeView;
 import org.example.models.Employee;
+import org.example.models.EmployeeDB;
 
 import javax.swing.*;
 import java.io.File;
@@ -46,12 +47,35 @@ public class AddEmployeeController {
     private void addActionListenerToAddButton() {
         addButton.addActionListener(event -> {
             createEmployee();
-            closeWindow();
+
+            if (employee != null) {
+                closeWindow();
+            } else {
+                JOptionPane.showMessageDialog(
+                        view,
+                        "Completa todos los campos para añadir un nuevo empleado",
+                        "Campos incompletos",
+                        JOptionPane.ERROR_MESSAGE
+                );
+            }
         });
     }
 
     private void createEmployee() {
+        String name = firstNameField.getText().trim();
+        String lastName = lastNameField.getText().trim();
+        String filePath = fileNameField.getText();
 
+        if (name.isBlank() || lastName.isBlank() || filePath.isBlank()) return;
+
+        int newID = EmployeeDB.createNewID();
+
+        employee = new Employee(
+                newID,
+                name,
+                lastName,
+                filePath
+        );
     }
 
     private void initFileChooser() {

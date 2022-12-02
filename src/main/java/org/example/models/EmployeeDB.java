@@ -60,4 +60,15 @@ public class EmployeeDB {
         employees.remove(employeeIndex);
         JsonWriter.writeJson(jsonPath, employees.toArray(new Employee[0]));
     }
+
+    public static int createNewID() {
+        int higherID = -1;
+        for (Employee employee : getEmployees()) {
+            if (employee.getId() > higherID) {
+                higherID = employee.getId();
+            }
+        }
+
+        return higherID + 1;
+    }
 }
