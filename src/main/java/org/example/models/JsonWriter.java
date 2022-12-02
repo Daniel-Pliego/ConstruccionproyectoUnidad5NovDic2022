@@ -5,16 +5,19 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Writer;
+import java.io.*;
 
 public class JsonWriter {
 
     public static void writeJson(String path, Employee[] employees) {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         JsonObject jsonresult = EmployeeParser(employees);
+
         try {
+            File file = new File(path);
+            if (!file.exists()) {
+                throw new FileNotFoundException();
+            }
             Writer writer = new FileWriter(path);
             gson.toJson(jsonresult, writer);
             writer.close();

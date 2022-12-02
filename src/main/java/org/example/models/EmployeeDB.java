@@ -13,6 +13,7 @@ public class EmployeeDB {
 
     public static void setJsonPath(String jsonPath) {
         EmployeeDB.jsonPath = jsonPath;
+        jsonArray = null;
     }
 
     //JsonArray singleton
@@ -59,6 +60,7 @@ public class EmployeeDB {
         ArrayList<Employee> employees = new ArrayList<>(List.of(getEmployees()));
         employees.remove(employeeIndex);
         JsonWriter.writeJson(jsonPath, employees.toArray(new Employee[0]));
+        updateJsonArray();
     }
 
     public static int createNewID() {
