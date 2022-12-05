@@ -24,14 +24,14 @@ public class EmployeeDB {
         return parseJsonToEmployeeArray(jsonArray);
     }
 
-    private static JsonArray getJsonArrayInstance(){
+    private static JsonArray getJsonArrayInstance() {
         if (jsonArray == null) {
             updateJsonArray();
         }
         return jsonArray;
     }
 
-    private static void updateJsonArray(){
+    private static void updateJsonArray() {
         jsonArray = readEmployeeJson();
     }
 
@@ -41,7 +41,8 @@ public class EmployeeDB {
     }
 
     private static Employee[] parseJsonToEmployeeArray(JsonArray json) {
-        List<Employee> employees = new Gson().fromJson(json, new TypeToken<>(){});
+        List<Employee> employees = new Gson().fromJson(json, new TypeToken<>() {
+        });
         return employees.toArray(new Employee[0]);
     }
 
@@ -59,6 +60,24 @@ public class EmployeeDB {
     public static void deleteEmployee(int employeeIndex) {
         ArrayList<Employee> employees = new ArrayList<>(List.of(getEmployees()));
         employees.remove(employeeIndex);
+        JsonWriter.writeJson(jsonPath, employees.toArray(new Employee[0]));
+        updateJsonArray();
+    }
+
+    public static int createNewID() {
+        int higherID = -1;
+        for (Employee employee : getEmployees()) {
+            if (employee.getId() > higherID) {
+                higherID = employee.getId();
+            }
+        }
+
+        return higherID + 1;
+    }
+
+    public static void addEmployee(Employee employee) {
+        ArrayList<Employee> employees = new ArrayList<>(List.of(getEmployees()));
+        employees.add(employee);
         JsonWriter.writeJson(jsonPath, employees.toArray(new Employee[0]));
         updateJsonArray();
     }

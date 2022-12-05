@@ -12,25 +12,28 @@ public class EmployeeTableController {
     private final JComboBox<String> comboBox;
     private final JButton editButton;
     private final JButton deleteButton;
+    private final JButton addButton;
     private final EmployeesTableView view;
-    
+
     public EmployeeTableController() {
         view = new EmployeesTableView();
         view.setVisible(true);
-        
+
         table = view.getEmployeesTable();
         comboBox = view.getEmployeeComboBox();
         editButton = view.getEditButton();
         deleteButton = view.getDeleteButton();
+        addButton = view.getAddButton();
 
         initComponents();
     }
-    
-    private void initComponents() {
+
+    protected void initComponents() {
         initTableValues();
         initEmployeeComboBox();
         addActionListenerToEditButton();
         addActionListenerToDeleteButton();
+        addActionListenerToAddButton();
     }
 
     private void initTableValues() {
@@ -51,7 +54,7 @@ public class EmployeeTableController {
     private void addActionListenerToEditButton() {
         editButton.addActionListener(e -> {
             int employeeIndex = comboBox.getSelectedIndex();
-            new EditEmployeeController(EmployeeDB.getEmployees()[employeeIndex]);
+            new EditEmployeeController(EmployeeDB.getEmployees()[employeeIndex], this);
         });
     }
 
@@ -76,5 +79,12 @@ public class EmployeeTableController {
                 EmployeeDB.deleteEmployee(employeeIndex);
             }
         });
+    }
+
+    private void addActionListenerToAddButton() {
+        addButton.addActionListener((e) -> {
+            new AddEmployeeController(this);
+        });
+
     }
 }
