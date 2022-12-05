@@ -16,11 +16,12 @@ public class EditEmployeeController {
     private final JTextField fileNameField;
     private final JButton editButton;
     private final JFileChooser fileChooser = new JFileChooser();
+    private EmployeeTableController parentController;
 
     private Employee employee;
 
-    public EditEmployeeController(Employee employee) {
-
+    public EditEmployeeController(Employee employee, EmployeeTableController parentController) {
+this.parentController = parentController;
         this.employee = employee;
 
         view = new EditEmployeeView();
@@ -83,5 +84,6 @@ public class EditEmployeeController {
     private void closeWindow() {
         view.setVisible(false);
         view.dispose();
+        parentController.initComponents();
     }
 }

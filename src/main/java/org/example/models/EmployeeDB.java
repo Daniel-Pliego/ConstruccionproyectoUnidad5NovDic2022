@@ -24,14 +24,14 @@ public class EmployeeDB {
         return parseJsonToEmployeeArray(jsonArray);
     }
 
-    private static JsonArray getJsonArrayInstance(){
+    private static JsonArray getJsonArrayInstance() {
         if (jsonArray == null) {
             updateJsonArray();
         }
         return jsonArray;
     }
 
-    private static void updateJsonArray(){
+    private static void updateJsonArray() {
         jsonArray = readEmployeeJson();
     }
 
@@ -41,7 +41,8 @@ public class EmployeeDB {
     }
 
     private static Employee[] parseJsonToEmployeeArray(JsonArray json) {
-        List<Employee> employees = new Gson().fromJson(json, new TypeToken<>(){});
+        List<Employee> employees = new Gson().fromJson(json, new TypeToken<>() {
+        });
         return employees.toArray(new Employee[0]);
     }
 

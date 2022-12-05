@@ -14,11 +14,11 @@ public class EmployeeTableController {
     private final JButton deleteButton;
     private final JButton addButton;
     private final EmployeesTableView view;
-    
+
     public EmployeeTableController() {
         view = new EmployeesTableView();
         view.setVisible(true);
-        
+
         table = view.getEmployeesTable();
         comboBox = view.getEmployeeComboBox();
         editButton = view.getEditButton();
@@ -27,8 +27,8 @@ public class EmployeeTableController {
 
         initComponents();
     }
-    
-    private void initComponents() {
+
+    protected void initComponents() {
         initTableValues();
         initEmployeeComboBox();
         addActionListenerToEditButton();
@@ -54,7 +54,7 @@ public class EmployeeTableController {
     private void addActionListenerToEditButton() {
         editButton.addActionListener(e -> {
             int employeeIndex = comboBox.getSelectedIndex();
-            new EditEmployeeController(EmployeeDB.getEmployees()[employeeIndex]);
+            new EditEmployeeController(EmployeeDB.getEmployees()[employeeIndex], this);
         });
     }
 
@@ -82,6 +82,9 @@ public class EmployeeTableController {
     }
 
     private void addActionListenerToAddButton() {
-        addButton.addActionListener(e -> new AddEmployeeController());
+        addButton.addActionListener((e) -> {
+            new AddEmployeeController(this);
+        });
+
     }
 }

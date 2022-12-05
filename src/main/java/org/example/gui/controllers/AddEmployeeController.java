@@ -16,11 +16,14 @@ public class AddEmployeeController {
     private final JButton selectButton;
     private final JButton addButton;
     private final JFileChooser fileChooser = new JFileChooser();
+    private EmployeeTableController parentController;
 
     private Employee employee;
 
-    public AddEmployeeController() {
 
+    public AddEmployeeController(EmployeeTableController parentController) {
+
+        this.parentController = parentController;
         view = new AddEmployeeView();
         view.setVisible(true);
         view.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -92,5 +95,6 @@ public class AddEmployeeController {
     private void closeWindow() {
         view.setVisible(false);
         view.dispose();
+        parentController.initComponents();
     }
 }
