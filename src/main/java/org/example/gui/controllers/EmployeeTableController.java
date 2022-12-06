@@ -44,6 +44,11 @@ public class EmployeeTableController {
         table.setModel(EmployeeTableModel.createModel());
     }
 
+    public void updateTable() {
+        table.setModel(EmployeeTableModel.createModel());
+        initEmployeeComboBox();
+    }
+
     private void initEmployeeComboBox() {
         comboBox.removeAllItems();
         for (Employee employee : EmployeeDB.getEmployees()) {
@@ -77,6 +82,7 @@ public class EmployeeTableController {
 
             if (option == 1) {
                 EmployeeDB.deleteEmployee(employeeIndex);
+                updateTable();
             }
         });
     }

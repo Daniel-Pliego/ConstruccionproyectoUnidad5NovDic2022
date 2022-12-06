@@ -15,20 +15,8 @@
       },
       {
         "id": 4,
-        "firstName": "sd",
-        "lastName": "ssss",
-        "photo": "/home/daniel/Downloads/wallpaperflare.com_wallpaper.jpg"
-      },
-      {
-        "id": 5,
-        "firstName": "daniel",
-        "lastName": "Pliego",
-        "photo": "/home/daniel/Downloads/wallpaperflare.com_wallpaper.jpg"
-      },
-      {
-        "id": 6,
-        "firstName": "rodrigo",
-        "lastName": "mariachi",
+        "firstName": "Daniel",
+        "lastName": "pliego",
         "photo": "/home/daniel/Downloads/wallpaperflare.com_wallpaper.jpg"
       }
     ]
