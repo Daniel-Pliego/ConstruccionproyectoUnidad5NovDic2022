@@ -21,7 +21,7 @@ public class EditEmployeeController {
     private Employee employee;
 
     public EditEmployeeController(Employee employee, EmployeeTableController parentController) {
-this.parentController = parentController;
+        this.parentController = parentController;
         this.employee = employee;
 
         view = new EditEmployeeView();
@@ -82,8 +82,10 @@ this.parentController = parentController;
     }
 
     private void closeWindow() {
+        parentController.isEditOpen = false;
+        parentController.updateTable();
         view.setVisible(false);
         view.dispose();
-        parentController.initComponents();
+
     }
 }

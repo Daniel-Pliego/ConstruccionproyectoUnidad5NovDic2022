@@ -93,6 +93,7 @@ public class AddEmployeeController {
     }
 
     private void closeWindow() {
+        parentController.isAddOpen = false;
         view.setVisible(false);
         view.dispose();
         parentController.initComponents();

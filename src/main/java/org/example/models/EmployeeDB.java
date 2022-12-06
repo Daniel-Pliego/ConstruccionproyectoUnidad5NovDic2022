@@ -55,6 +55,7 @@ public class EmployeeDB {
                 break;
             }
         }
+        updateJsonArray();
     }
 
     public static void deleteEmployee(int employeeIndex) {
