@@ -15,6 +15,10 @@ public class EmployeeTableController {
     private final JButton addButton;
     private final EmployeesTableView view;
 
+    boolean isEditOpen = false;
+    boolean isDeleteOpen = false;
+    boolean isAddOpen = false;
+
     public EmployeeTableController() {
         view = new EmployeesTableView();
         view.setVisible(true);
@@ -44,6 +48,11 @@ public class EmployeeTableController {
         table.setModel(EmployeeTableModel.createModel());
     }
 
+    public void updateTable() {
+        table.setModel(EmployeeTableModel.createModel());
+        initEmployeeComboBox();
+    }
+
     private void initEmployeeComboBox() {
         comboBox.removeAllItems();
         for (Employee employee : EmployeeDB.getEmployees()) {
@@ -53,14 +62,22 @@ public class EmployeeTableController {
 
     private void addActionListenerToEditButton() {
         editButton.addActionListener(e -> {
-            int employeeIndex = comboBox.getSelectedIndex();
-            new EditEmployeeController(EmployeeDB.getEmployees()[employeeIndex], this);
+            if (!isEditOpen) {
+                int employeeIndex = comboBox.getSelectedIndex();
+                new EditEmployeeController(EmployeeDB.getEmployees()[employeeIndex], this);
+                isEditOpen = true;
+            }
         });
     }
 
     private void addActionListenerToDeleteButton() {
         deleteButton.addActionListener(e -> {
 
+            if (isDeleteOpen) {
+                return;
+            }
+
+            isDeleteOpen = true;
             int employeeIndex = comboBox.getSelectedIndex();
             Employee employee = EmployeeDB.getEmployees()[employeeIndex];
 
@@ -77,13 +94,18 @@ public class EmployeeTableController {
 
             if (option == 1) {
                 EmployeeDB.deleteEmployee(employeeIndex);
+                updateTable();
             }
+            isDeleteOpen = false;
         });
     }
 
     private void addActionListenerToAddButton() {
         addButton.addActionListener((e) -> {
-            new AddEmployeeController(this);
+            if (!isAddOpen) {
+                isAddOpen = true;
+                new AddEmployeeController(this);
+            }
         });
 
     }
