@@ -3,7 +3,7 @@
     "employee": [
       {
         "id": 2,
-        "firstName": "Mari",
+        "firstName": "Mar",
         "lastName": "Sharapova",
         "photo": "src/main/resources/Maria-Sharapova.jpg"
       },
@@ -15,8 +15,8 @@
       },
       {
         "id": 4,
-        "firstName": "Daniel",
-        "lastName": "pliego",
+        "firstName": "Curiqui",
+        "lastName": "Takati",
         "photo": "/home/daniel/Downloads/wallpaperflare.com_wallpaper.jpg"
       }
     ]

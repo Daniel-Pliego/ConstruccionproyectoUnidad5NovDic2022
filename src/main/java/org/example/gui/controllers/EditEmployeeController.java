@@ -82,6 +82,7 @@ public class EditEmployeeController {
     }
 
     private void closeWindow() {
+        parentController.isEditOpen = false;
         parentController.updateTable();
         view.setVisible(false);
         view.dispose();
